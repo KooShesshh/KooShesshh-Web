@@ -1,5 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
+function bootKooTerm() {
   const terminal = document.getElementById('terminal');
+  if (!terminal || terminal.dataset.ready === '1') return;
+  terminal.dataset.ready = '1';
 
   createNewLine();
 
@@ -68,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
 
       case 'exit':
-        window.location.href = "index.html";
+        window.location.href = /terminal\.html$/i.test(window.location.pathname) ? 'index.html' : '/';
         return false;
 
       case 'bio':
@@ -85,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       case 'fastfetch':
       case 'neofetch':
-        output = `⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠐⢄⣀⠀⠀⠀⠀⠀⠀                        User@KooTerm
+        appendFetch(`⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠐⢄⣀⠀⠀⠀⠀⠀⠀                        User@KooTerm
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢠⠆⠀⠀⠀⠀⠀⠀⢀⠤⠂⠀⢀⢠⣥⣶⣤⣶⣿⣿⣷⣦⣆⡄⠀⠀⠀                        ---------------
 ⢀⡞⡷⡅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⡦⠁⠀⠀⠀⠀⠀⢀⡴⣡⢆⢵⣨⣾⣿⣿⣿⣿⣿⣿⣿⣟⣿⣿⣿⣶⣦⣄                        OS:     KooTerm Web
 ⠮⣷⣹⠆⡀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣋⣀⣀⡀⢀⠀⢀⣦⣈⢍⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣷⣻                        Host:   Browser
@@ -105,8 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
 ⠀⠀⠀⠀⠀⠈⠻⠾⣾⣿⣯⣤⣤⣤⣤⣶⠟⢁⠌⠡⠤⠀⢀⠀⠙⣿⣬⣵⣿⣿⣈⣈⣤⣴⡿⡏⠀⠀⠀⠀⠀⠀⠀⠀                      
 ⠀⠀⢀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣶⡶⣴⣮⣤⣤⣴⣵⣦⣷⣿⣿⣿⣿⣿⣿⣭⠻⡭⢓⣯⠇⠀⠀⠀⠀⠀⠀⠀⠀                      
 ⠀⠀⡐⠀⠂⠠⡀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣍⣁⣯⣷⡄⣹⠟⢉⣿⣿⣿⣿⣿⠃⢀⠄⠐⠠⠐⡇⠀⠀⠀⠀⠀⠀⠀⠀                      
-⠀⠀⠃⠀⣼⠀⠄⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣼⣿⣵⣷⣶⣾⣿⣿⣿⣿⠟⡈⠤⣌⡆⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
-        break;
+⠀⠀⠃⠀⣼⠀⠄⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣼⣿⣵⣷⣶⣾⣿⣿⣿⣿⠟⡈⠤⣌⡆⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`);
+        return true;
 
       default:
         if (cmd === 'echo') {
@@ -122,6 +124,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return true;
   }
+
+  function appendFetch(text) {
+    const line = document.createElement('div');
+    line.className = 'terminal-line fetch';
+    const pre = document.createElement('pre');
+    pre.className = 'fetch-art';
+    pre.textContent = text;
+    line.appendChild(pre);
+    terminal.appendChild(line);
+    const fit = () => fitFetch(pre);
+    requestAnimationFrame(fit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  }
+
+  function fitFetch(pre) {
+    if (!pre.isConnected) return;
+    const narrow = window.innerWidth <= 900;
+    if (!narrow) {
+      pre.style.fontSize = '13px';
+      pre.style.transform = 'none';
+      return;
+    }
+    const available = Math.max(terminal.clientWidth - 6, 120);
+    let size = 13;
+    pre.style.fontSize = size + 'px';
+    pre.style.lineHeight = '1';
+    const natural = pre.scrollWidth || 1;
+    size = Math.max(4, (13 * available) / natural);
+    pre.style.fontSize = size + 'px';
+  }
+
+  window.addEventListener('resize', () => {
+    terminal.querySelectorAll('.fetch-art').forEach(fitFetch);
+  });
 
   function appendOutput(text) {
     const line = document.createElement('div');
@@ -147,4 +183,10 @@ document.addEventListener('DOMContentLoaded', () => {
     line.querySelector('.command').focus();
     terminal.scrollTop = terminal.scrollHeight;
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootKooTerm);
+} else {
+  bootKooTerm();
+}
