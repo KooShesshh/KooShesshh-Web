@@ -94,14 +94,37 @@ body {
   margin-left: 6px;
 }
 
-.output-text {
+.terminal-line.fetch {
+  display: block;
+  width: max-content;
+  max-width: none;
+  overflow: visible;
+  padding: 2px 6px 8px;
+  white-space: normal;
+  min-height: 0;
+}
+
+.fetch-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 18px;
+  width: max-content;
+}
+
+.fetch-art,
+.fetch-info {
+  display: block;
+  width: max-content;
+  margin: 0;
   color: #5fb86a;
-  font-family: "Cascadia Code", "Fira Code", "JetBrains Mono", "Courier New", monospace;
-  white-space: pre;
-  line-height: 1.15;
-  letter-spacing: 0;
+  font-family: "Noto Sans Mono", "DejaVu Sans Mono", "Courier New", monospace;
   font-size: 13px;
-  word-break: normal;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: pre;
+  font-variant-ligatures: none;
+  font-weight: 400;
 }
 
 .terminal::-webkit-scrollbar { width: 10px; height: 10px; }
@@ -139,6 +162,7 @@ body {
       env(safe-area-inset-bottom)
       env(safe-area-inset-left);
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .terminal-line {
@@ -180,10 +204,47 @@ body {
   }
 
   .output-text {
-    font-size: clamp(11px, 2.8vw, 13px);
+    font-size: 13px;
     white-space: pre;
-    line-height: 1.2;
+    line-height: 1.15;
     padding: 0;
+  }
+
+  .terminal-line.fetch {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+    padding: 6px 8px 10px;
+    min-height: 0;
+  }
+
+  .fetch-layout {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .fetch-art-scroll {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .fetch-art {
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  .fetch-info {
+    font-size: 16px;
+    line-height: 1.5;
+    width: 100%;
+    max-width: 100%;
+    white-space: pre-wrap;
   }
 
   .terminal::-webkit-scrollbar { width: 6px; height: 6px; }
