@@ -186,3 +186,30 @@ body {
 .content a.terminal:hover {
   background: linear-gradient(#C692D5, #FFFFFF);
 }
+
+@media (max-width: 768px) and (max-height: 700px) {
+  .pfp img {
+    width: min(220px, 40vh, 58vw);
+    height: min(220px, 40vh, 58vw);
+  }
+
+  .title h1,
+  .content a.terminal h1 {
+    margin: 0.2em 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pfp img,
+  .title h1,
+  .content a.terminal {
+    animation: none;
+    border: 5px solid #C692D5;
+  }
+
+  .title h1,
+  .content a.terminal,
+  .content a.terminal h1 {
+    color: #9B7EC4;
+  }
+}
