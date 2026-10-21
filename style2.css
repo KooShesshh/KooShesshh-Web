@@ -260,4 +260,81 @@ body {
   }
 }
 
+@media screen and (max-width: 900px) {
+  html, body {
+    overflow: hidden;
+    height: 100%;
+  }
 
+  .terminal {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    font-size: 15px;
+    line-height: 1.35;
+    padding:
+      env(safe-area-inset-top)
+      env(safe-area-inset-right)
+      env(safe-area-inset-bottom)
+      env(safe-area-inset-left);
+    overflow: auto;
+  }
+
+  .terminal-line {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 4px 10px;
+    text-align: left;
+    margin: 0;
+    min-height: 28px;
+  }
+
+  .terminal-line.output {
+    display: block;
+    padding: 2px 10px;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .terminal-prompt {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    font-size: clamp(12px, 3.4vw, 15px);
+  }
+
+  .command {
+    flex: 1 1 auto;
+    margin: 0 0 0 6px;
+    padding: 6px 0;
+    min-width: 1.5rem;
+    min-height: 28px;
+    font-size: 16px;
+    text-align: left;
+  }
+
+  .output-text {
+    font-size: clamp(11px, 2.8vw, 13px);
+    white-space: pre;
+    line-height: 1.2;
+    padding: 0;
+  }
+
+  .terminal::-webkit-scrollbar { width: 6px; height: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal { animation: none; border: 5px solid #C692D5; opacity: 0.95; }
+}
