@@ -1,0 +1,263 @@
+html, body {
+  overflow: hidden;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes rgb {
+  0% {
+   border: 5px solid #FFFFFF;
+  }
+  10% {
+   border: 5px solid #C48B84;
+  }
+  20% {
+   border: 5px solid #E07A62;
+  }
+  30% {
+   border: 5px solid #E0924A;
+  }
+  40% {
+   border: 5px solid #D4A83A;
+  }
+  50% {
+   border: 5px solid #5FB86A;
+  }
+  60% {
+   border: 5px solid #3A9BB8;
+  }
+  70% {
+   border: 5px solid #5B86D6;
+  }
+  80% {
+   border: 5px solid #C692D5;
+  }
+  90% {
+   border: 5px solid #B56BC8;
+  }
+  100% {
+   border: 5px solid #D45B68;
+  }
+}
+
+body {
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+  background-image:
+    linear-gradient(rgba(198,146,213,0.9), #FFFFFF),
+    url(assets/Wallpaper.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.terminal {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  background-color: #ffffff;
+  color: #c692d5;
+  margin: 50px 177.5px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 8px;
+  height: 500px;
+  width: 1000px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  opacity: 0.9;
+  animation: rgb 2s linear infinite, ghost 2s;
+}
+
+@keyframes ghost {
+  from {opacity: 0;}
+  to {opacity: 0.9;}
+}
+
+.terminal-line {
+  display: flex;
+  align-items: center;
+  padding: 1px 0;
+  white-space: nowrap;
+}
+
+.terminal-line.output {
+  color: #D45B68;
+}
+
+.terminal-line.active .command {
+  caret-color: #c692d5;
+}
+
+.terminal-prompt {
+  margin-left: 5px;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.prompt-user {
+  color: #5fb86a;
+  font-weight: 600;
+}
+
+.prompt-at {
+  color: #3a9bb8;
+}
+
+.prompt-host {
+  color: #9b7ec4;
+  font-weight: 600;
+}
+
+.prompt-path {
+  color: #c48b84;
+}
+
+.prompt-symbol {
+  color: #e07a62;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.command {
+  color: #d4a83a;
+  outline: none;
+  flex-grow: 1;
+  min-width: 0;
+  margin-left: 6px;
+}
+
+.command:empty:not(:focus)::before {
+  content: "";
+  }
+
+.output-text {
+  color: #5fb86a;
+  word-break: break-all;
+}
+
+.terminal::-webkit-scrollbar {
+  width: 10px;
+}
+
+.terminal::-webkit-scrollbar-track {
+  background: #9b7ec4;
+}
+
+.terminal::-webkit-scrollbar-thumb {
+  background-color: #c48b84;
+  border-radius: 5px;
+  border: 2px solid #c48b84;
+}
+
+.terminal::-webkit-scrollbar-thumb:hover {
+  background-color: #3a9bb8;
+}
+
+.terminal ::selection {
+  background-color: #b56bc8;
+  color: #b56bc8;
+}
+
+
+.output-text,
+.terminal,
+.terminal-line.output {
+  line-height: 1.0 !important;
+  white-space: pre !important;
+  }
+
+.output-text {
+  font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+  white-space: pre;
+  line-height: 1.15;
+  letter-spacing: 0;
+  font-size: 13px;
+}
+
+@media screen and (max-width: 1200px) {
+
+  html, body {
+    overflow: hidden !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .terminal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    font-size: 14px !important;
+    box-sizing: border-box !important;
+    line-height: 1.05 !important;
+  }
+
+.terminal-line {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+    padding: 8px 12px !important;
+    text-align: left !important;
+    line-height: 1.0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+  }
+
+.terminal-prompt {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
+  }
+
+.command {
+    flex: 1 1 auto !important;
+    margin: 0 0 0 5px !important;
+    padding: 0 !important;
+    min-width: 0 !important;
+    text-align: left !important;
+  }
+
+  .output-text {
+    word-break: break-word !important;
+    white-space: pre-wrap !important;
+    padding: 0 6px !important;
+    font-size: 2.1vw !important;
+    white-space: pre !important;
+    line-height: 1.05 !important;
+}
+
+  .output-text,
+  .terminal,
+  .terminal-line.output {
+    line-height: 1.0 !important;
+    font-size: 9px !important;
+    white-space: pre !important;
+  }
+  
+  .terminal::-webkit-scrollbar {
+    width: 5px !important;
+  }
+
+  .terminal-line.active .command {
+    margin-left: 5px !important;
+  }
+}
+
+

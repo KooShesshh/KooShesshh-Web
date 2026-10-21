@@ -1,0 +1,188 @@
+.pixelify-sans-<uniquifier> {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@keyframes rgb {
+   0% {
+   border: 5px solid #C48B84;
+  }
+  10% {
+   border: 5px solid #E07A62;
+  }
+  20% {
+   border: 5px solid #E0924A;
+  }
+  30% {
+   border: 5px solid #D4A83A;
+  }
+  40% {
+   border: 5px solid #5FB86A;
+  }
+  50% {
+   border: 5px solid #3A9BB8;
+  }
+  60% {
+   border: 5px solid #5B86D6;
+  }
+  70% {
+   border: 5px solid #9B7EC4;
+  }
+  80% {
+   border: 5px solid #C692D5;
+  }
+  90% {
+   border: 5px solid #B56BC8;
+  }
+  100% {
+   border: 5px solid #D45B68;
+  }
+}
+
+
+@keyframes rgb-letters {
+   0% {
+   color: #C48B84;
+  }
+  10% {
+   color: #E07A62;
+  }
+  20% {
+   color: #E0924A;
+  }
+  30% {
+   color: #D4A83A;
+  }
+  40% {
+   color: #5FB86A;
+  }
+  50% {
+   color: #3A9BB8;
+  }
+  60% {
+   color: #5B86D6;
+  }
+  70% {
+   color: #9B7EC4;
+  }
+  80% {
+   color: #C692D5;
+  }
+  90% {
+   color: #B56BC8;
+  }
+  100% {
+   color: #D45B68;
+  }
+}
+
+@keyframes rgb-background {
+  0% {
+   background-color: #C48B84;
+  }
+  10% {
+   background-color: #E07A62;
+  }
+  20% {
+   background-color: #E0924A;
+  }
+  30% {
+   background-color: #D4A83A;
+  }
+  40% {
+   background-color: #5FB86A;
+  }
+  50% {
+   background-color: #3A9BB8;
+  }
+  60% {
+   background-color: #5B86D6;
+  }
+  70% {
+   background-color: #9B7EC4;
+  }
+  80% {
+   background-color: #C692D5;
+  }
+  90% {
+   background-color: #B56BC8;
+  }
+  100% {
+   background-color: #D45B68;
+  }
+}
+
+@keyframes slide {
+  from {
+    translate: 150vw 0;
+    scale: 200% 1;
+  }
+
+  to {
+    translate: 0 0;
+    scale: 100% 1;
+  }
+}
+
+@keyframes rotate {
+  0% {
+   transform: rotate(0deg);
+  }
+  100% {
+   transform: rotate(360deg);
+  }
+}
+
+.pfp, .title, .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pfp img {
+  border-radius: 100%;
+  animation: slide 2s ease-in-out, rotate 2s ease-in-out, rgb 2s linear infinite;
+  width: 400px;
+  height: 400px;
+}
+
+html, body {
+  overflow: hidden;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+  background-image:
+    linear-gradient(rgba(198,146,213,0.9), #FFFFFF),
+    url(assets/Wallpaper.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.title h1 {
+  animation: slide 2s ease-in-out, rotate 2s ease-in-out, rgb-letters 2s linear infinite, rgb 2s linear infinite;
+  background-color: #FFFFFF;
+  border-radius: 50px;
+  padding: 0 20px 0 20px;
+}
+
+.content a.terminal{
+  animation: slide 2s ease-in-out, rotate 2s ease-in-out, rgb-letters 2s linear infinite, rgb 2s linear infinite;
+  background-color: #FFFFFF;
+  border-radius: 50px;
+  padding: 0 20px 0 20px;
+}
+
+.content a.terminal:hover {
+  background: linear-gradient(#C692D5, #FFFFFF);
+}
